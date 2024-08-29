@@ -28,6 +28,24 @@ func PresentWrap(l, w, h int) int {
 	return totalArea
 }
 
+func Ribbon(l, w, h int)int{
+	faceA := (2*l) + (2*w)
+	faceB := (2*w) + (2*h)
+	faceC := (2*l) + (2*h)
+
+	perimeter := faceA
+	if faceB < perimeter{
+		perimeter = faceB
+	}
+	if faceC < perimeter{
+		perimeter = faceC
+	}
+	volume := l * w * h 
+	// Total feet required
+	totalArea := volume + perimeter
+	return totalArea
+}
+
 func fileReader() [][]int {
 	file, err := os.Open("input.txt")
 	if err != nil {
@@ -51,10 +69,8 @@ func fileReader() [][]int {
 }
 
 func main() {
-	area := PresentWrap(2, 3, 4)
-	fmt.Println("This is area", area)
-
 	var totalArea int
+	var totalRibbonlen int
 	var l, w, h int
 	Digits := fileReader()
 	// fmt.Println(Digits)
@@ -63,8 +79,10 @@ func main() {
 		w = digits[1]
 		h = digits[2]
 		area := PresentWrap(l, w, h)
-		fmt.Printf("Digits %v, Area =>%v \n", digits, area)
 		totalArea += area
+		ribbonLength := Ribbon(l, w, h)
+		totalRibbonlen += ribbonLength
 	}
-	fmt.Println(totalArea)
+	fmt.Println("This is the total Area needed", totalArea)
+	fmt.Println("This is the total ribbon length =>", totalRibbonlen)
 }

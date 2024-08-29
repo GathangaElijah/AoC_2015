@@ -12,5 +12,20 @@ func TestPresentWrap(t *testing.T) {
 	got := PresentWrap(l, w, h)
 	if got != expected {
 		t.Errorf("Got  %v, expected %v . Error!", got, expected)
+		return
+	}
+}
+
+func TestRibbon(t *testing.T){
+	l := 1
+	w := 1
+	h := 10
+
+	expected := 14
+
+	got := Ribbon(l, w, h)
+	if got != expected {
+		t.Errorf("Got %v, expected %v. Error!", got, expected)
+		return
 	}
 }
